@@ -1,0 +1,38 @@
+The question of BufferedReader
+BufferedReader provide a method readLine(), this method regard a line data terminal by '\n', '\r' or '\n''\r' as a String.
+I can exit the program of Reader by if sentence.
+eg.
+String s;
+while((s = in.readLine()) != null) {
+  if(s.equlsIgnoreCase("exit")) break;
+}
+
+if the sentence alter as follow:
+String s;
+while(in.readLine() != null) {
+  s = in.readLine();
+  if(s.equlsIgnoreCase("exit") break;
+}
+  this way is wrong! It will read a time while you called it a time. So the String s save the second readLine(),
+and the first readLine() is compare to null. As well the next loop. So we can look a phenomenon the program just 
+can read even line input data.
+
+the complete programa:
+import java.io.*;
+public class TestLog {
+	public static void main(String[] args) {		
+		try {
+			BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+			FileWriter fP = new FileWriter("D:/java/test3.log", true);
+			Writer out = new BufferedWriter(fP);
+			String s;
+			while((s = in.readLine()) != null) {
+        if(s.equlasIgnoreCase("exit")) break;
+        out.write(s);
+      }
+			in.close();
+			out.close();  //we need close the I/O at the end of the program, or you may can't write data in a file
+		} catch(FileNotFoundException e) {e.printStackTrace();}
+		catch(IOException e) {e.printStackTrace();}	
+	}
+}
