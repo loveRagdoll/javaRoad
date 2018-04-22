@@ -31,7 +31,7 @@ public class TestLog {
         out.write(s);
       }
 			in.close();
-			out.close();
+			out.close();  //we need close the I/O at the end of the program, or you may can't write data in a file
 		} catch(FileNotFoundException e) {e.printStackTrace();}
 		catch(IOException e) {e.printStackTrace();}	
 	}
